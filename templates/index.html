@@ -1,10 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>Hello!</title>
+    <title>Выгрузка с ЦБ</title>
 </head>
-<body>
 
+<body>
+<script>
+    function theFunction() {
+        alert('Для начала выгрузки, нажмите "OK"');
+        location.href = 'http://localhost:5000/download'
+    }
+</script>
+
+<div class="jumbotron" style="margin-top: 10px">
+    <h1 class="display-4">Показатели курса рубля</h1>
+    <p class="lead">Для выгрузки данных с сайта ЦБ нажмите "выгрузить"</p>
+    <hr class="my-4">
+    <br>
+
+
+    <button type="button" onclick="theFunction()">Выгрузить</button>
+
+</div>
 </body>
 </html>

@@ -58,6 +58,5 @@ def parsing_data_and_fill_db():
                     print(f'Exception on DB fill {e.args}')
 
 
-
         except Exception as e:
             print(f'{e.args}')

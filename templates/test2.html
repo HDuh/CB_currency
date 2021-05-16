@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+//дожидаемся полной загрузки страницы
+window.onload = function () {
+
+    //получаем идентификатор элемента
+    var a = document.getElementById('switch');
+
+    //вешаем на него событие
+    a.onclick = function() {
+        //производим какие-то действия
+        if (this.innerHTML=='On') this.innerHTML = 'Off';
+        else this.innerHTML = 'On';
+        //предотвращаем переход по ссылке href
+        return false;
+    }
+}
+</script>
+
+<a id="switch" href="#">On</a>
+</body>
+</html>
