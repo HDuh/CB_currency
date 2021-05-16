@@ -1,13 +1,16 @@
 import sqlite3
-import time
+
 from flask import Flask, flash, redirect, render_template, \
     request, url_for
+
 import base_control as bc
 from base_control import create_db
 from fill_db import parsing_data_and_fill_db as pars_data
 
 app = Flask(__name__)
 app.config.from_pyfile('config.py')
+
+# инит базы данных
 create_db()
 
 
@@ -31,7 +34,6 @@ def download():
 
 @app.route('/results')
 def results():
-    flash('Вышрузка закончена')
     conn = get_db_connection()
     valutes = conn.execute('SELECT * FROM valutes').fetchall()
     max_val = bc.get_max()
