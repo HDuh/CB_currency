@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Рузультаты выгрузки с ЦБ</title>
+</head>
+
+<style type="text/css">
+    html, body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    h1 {
+        margin-left: auto;
+        margin-right: auto;
+        width: 8em;
+    }
+
+    #CenterBlock {
+        background: RGB(249, 201, 16);
+        width: 400px;
+        height: 230px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin: -200px 0 0 -200px;
+    }
+</style>
+<body>
+
+<h1>Значения валют</h1>
+<hr>
+<div id="CenterBlock">
+    <a><b>Минимальная валюта</b></a>
+    <br>
+    <a>Значение: <b>{{ min_val[0] }} руб.</b></a>
+    <br>
+    <a>Название валюты: <b>{{ min_val[1] }}</b></a>
+    <br>
+    <a>Дата этого значения: <b>{{ min_val[2] }}</b></a>
+    <hr>
+
+    <a><b>Максимальная валюта</b></a>
+    <br>
+    <a>Значение: <b>{{ max_val[0] }} руб.</b></a>
+    <br>
+    <a>Название валюты: <b>{{ max_val[1] }}</b></a>
+    <br>
+    <a>Дата этого значения: <b>{{ max_val[2] }}</b></a>
+    <hr>
+
+    <a>Среднее значение перевода в рубли за весь период по всем валютам: <b>{{ avg_val }}</b></a>
+</div>
+</body>
+</html>

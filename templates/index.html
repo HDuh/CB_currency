@@ -1,10 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>Hello!</title>
-</head>
-<body>
+    <title>Выгрузка с ЦБ</title>
+    <style type="text/css">
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+        }
 
+        h1 {
+            margin-left: auto;
+            margin-right: auto;
+            width: 8em;
+        }
+
+        #some_text {
+            width: 400px;
+            height: 230px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: -200px 0 0 -200px;
+        }
+
+        #download_btn {
+
+            position: absolute;
+            top: 60%;
+            left: 58%;
+            margin: -200px 0 0 -200px;
+
+        }
+    </style>
+</head>
+
+<body>
+<script>
+    function theFunction() {
+        alert('Для начала выгрузки, нажмите "OK"');
+        document.getElementById("rubl_show").innerHTML = "Пожалуйста, ожидайте, идёт выгрузка!";
+        document.getElementById("some_text").style.opacity = 0;
+        document.getElementById("download_btn").style.display = 'none';
+        location.href = 'http://localhost:5000/download';
+
+    }
+</script>
+
+<div class="jumbotron" style="margin-top: 10px">
+    <h1 id="rubl_show">Показатели курса рубля</h1>
+    <h1 id="new"></h1>
+    <p id="some_text">Для выгрузки данных с сайта ЦБ нажмите "выгрузить"</p>
+    <hr class="my-4">
+    <br>
+
+
+    <button id="download_btn" type="button" onclick="theFunction()">Выгрузить</button>
+
+</div>
 </body>
 </html>

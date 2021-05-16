@@ -33,42 +33,50 @@ def delete_table_from_db():
 
 # запросы в БД
 def get_max():
-    conn = sqlite3.connect('valutes.db')
+    try:
+        conn = sqlite3.connect('valutes.db')
+        cursor = conn.cursor()
+        cursor.execute("""SELECT RUB, valute_name, date "
+                                      "FROM valutes "
+                                      "WHERE RUB = (SELECT MAX(RUB) FROM valutes) ;""")
+        max_results = cursor.fetchall()
 
-    cursor = conn.cursor()
-    cursor.execute("""SELECT RUB, valute_name, date "
-                                  "FROM valutes "
-                                  "WHERE RUB = (SELECT MAX(RUB) FROM valutes) ;""")
-    max_results = cursor.fetchall()
-    print('---')
-    print('Максимальная валюта')
-    print(f'Значение  валюты: {round(max_results[0][0], 1)} руб.\n'
-          f'Название валюты: {max_results[0][1]}\n'
-          f'Дата этого значения: {max_results[0][2]}')
-    print('---')
+        return (round(max_results[0][0], 1),
+                max_results[0][1],
+                max_results[0][2])
+    except Exception as e:
+        print(f'Ошибка функции get_max: {e.args}')
+        return 'Opss, ошЫбка.'
 
 
 def get_min():
-    conn = sqlite3.connect('valutes.db')
+    try:
+        conn = sqlite3.connect('valutes.db')
 
-    cursor = conn.cursor()
-    cursor.execute("""SELECT RUB, valute_name, date "
-                                  "FROM valutes "
-                                  "WHERE RUB = (SELECT MIN(RUB) FROM valutes) ;""")
-    min_results = cursor.fetchall()
-    print('---')
-    print('Минимальная валюта')
-    print(f'Значение валюты: {round(min_results[0][0], 1)} руб.\n'
-          f'Название валюты: {min_results[0][1]}\n'
-          f'Дата этого значения: {min_results[0][2]}')
-    print('---')
+        cursor = conn.cursor()
+        cursor.execute("""SELECT RUB, valute_name, date "
+                                      "FROM valutes "
+                                      "WHERE RUB = (SELECT MIN(RUB) FROM valutes) ;""")
+        min_results = cursor.fetchall()
+
+        return (round(min_results[0][0], 1),
+                min_results[0][1],
+                min_results[0][2])
+    except Exception as e:
+        print(f'Ошибка функции get_min: {e.args}')
+        return 'Opss, ошЫбка.'
 
 
 def get_average():
-    conn = sqlite3.connect('valutes.db')
-    cursor = conn.cursor()
-    cursor.execute("""SELECT avg(RUB) FROM valutes;""")
-    avg_results = cursor.fetchall()
-    print('---')
-    print(f'Среднее значение перевода в рубли за весь период по всем валютам: {round(avg_results[0][0], 2)} руб.')
-    print('---')
+    try:
+        conn = sqlite3.connect('valutes.db')
+        cursor = conn.cursor()
+        cursor.execute("""SELECT avg(RUB) FROM valutes;""")
+
+        avg_results = cursor.fetchall()
+
+        return round(avg_results[0][0], 2)
+
+    except Exception as e:
+        print(f'Ошибка функции get_average: {e.args}')
+        return 'Opss, ошЫбка.'
